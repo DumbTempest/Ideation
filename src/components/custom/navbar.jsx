@@ -39,9 +39,15 @@ export default function Navbar() {
             <Link href ="/Contri">
             <span className="cursor-pointer font-medium">Contribute</span>
             </Link>
-
-            <span className="cursor-pointer font-medium">About</span>
-            <span className="cursor-pointer font-medium">Data Source</span>
+          
+            <Link href ="/ProjectDB">
+            <span className="cursor-pointer font-medium">Database</span>
+            </Link>
+            
+            <Link href ="/DataSource">
+            <span className="cursor-pointer font-medium">Sauce</span>
+            </Link>
+            
 
             {/* <Button variant="outline" onClick={() => setOpen(false)}>
               Close

@@ -1,5 +1,5 @@
 import ProjectCard from "@/components/custom/projectCard";
-
+import Navbar from "@/components/custom/navbar";
 export default function ProjectsPage() {
   const projects = [
     {
@@ -42,6 +42,7 @@ export default function ProjectsPage() {
 
   return (
     <main className="min-h-screen px-6 py-10">
+      <Navbar />
       <h1 className="text-3xl font-bold text-center mb-10">Database</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
