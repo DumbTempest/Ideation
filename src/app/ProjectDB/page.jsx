@@ -1,57 +1,74 @@
+"use client";
 import ProjectCard from "@/components/custom/projectCard";
 import Navbar from "@/components/custom/navbar";
+import { useEffect , useState} from "react";
+import { get } from "mongoose";
 
 export default function ProjectsPage() {
-  const projects = [
-    {
-      name: "Weather App",
-      description: "Fetch and display live weather data.",
-      domain: "Web Development",
-      techStack: ["Next.js", "API", "Tailwind"],
-      label: "eww",
-      difficulty: "Easy"
-    },
-    {
-      name: "Task Manager",
-      description: "A simple app to track daily tasks.",
-      domain: "Productivity",
-      techStack: ["React", "LocalStorage"],
-      label: "eww",
-      difficulty: "Easy",
-    },
-    {
-      name: "Blog Platform",
-      description: "A minimal blogging system.",
-      domain: "Content",
-      techStack: ["Next.js", "Markdown"],
-      label: "eww",
-      difficulty: "Easy"
-    },
-    {
-      name: "Quiz App",
-      description: "Interactive quizzes with scoring.",
-      domain: "Education",
-      techStack: ["Next.js", "Shadcn"],
-      label: "eww",
-      difficulty: "Easy"
-    },
-    {
-      name: "Recipe Finder",
-      description: "Find recipes based on ingredients.",
-      domain: "Lifestyle",
-      techStack: ["React", "API"],
-      label: "eww",
-      difficulty: "Easy"
-    },
-    {
-      name: "Portfolio Site",
-      description: "A clean personal portfolio.",
-      domain: "Web Design",
-      techStack: ["Next.js", "Tailwind"],
-      label: "eww",
-      difficulty: "Easy"
-    },
-  ];
+  // const projects = [
+  //   {
+  //     name: "Weather App",
+  //     description: "Fetch and display live weather data.",
+  //     domain: "Web Development",
+  //     techStack: ["Next.js", "API", "Tailwind"],
+  //     label: "eww",
+  //     difficulty: "Easy"
+  //   },
+  //   {
+  //     name: "Task Manager",
+  //     description: "A simple app to track daily tasks.",
+  //     domain: "Productivity",
+  //     techStack: ["React", "LocalStorage"],
+  //     label: "eww",
+  //     difficulty: "Easy",
+  //   },
+  //   {
+  //     name: "Blog Platform",
+  //     description: "A minimal blogging system.",
+  //     domain: "Content",
+  //     techStack: ["Next.js", "Markdown"],
+  //     label: "eww",
+  //     difficulty: "Easy"
+  //   },
+  //   {
+  //     name: "Quiz App",
+  //     description: "Interactive quizzes with scoring.",
+  //     domain: "Education",
+  //     techStack: ["Next.js", "Shadcn"],
+  //     label: "eww",
+  //     difficulty: "Easy"
+  //   },
+  //   {
+  //     name: "Recipe Finder",
+  //     description: "Find recipes based on ingredients.",
+  //     domain: "Lifestyle",
+  //     techStack: ["React", "API"],
+  //     label: "eww",
+  //     difficulty: "Easy"
+  //   },
+  //   {
+  //     name: "Portfolio Site",
+  //     description: "A clean personal portfolio.",
+  //     domain: "Web Design",
+  //     techStack: ["Next.js", "Tailwind"],
+  //     label: "eww",
+  //     difficulty: "Easy"
+  //   },
+  // ];
+
+  const [projects, setProjects] = useState([]);
+   
+  useEffect(() => {
+     const getProjects = async () => {
+      const response = await fetch("/api/projects", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      setProjects(data);
+     }
+     getProjects();
+  }, []);
 
   return (
     <main className="min-h-screen px-6 py-10">
