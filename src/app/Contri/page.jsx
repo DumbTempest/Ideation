@@ -15,6 +15,7 @@ import {
 import Navbar from "@/components/custom/navbar";
 import { TagInput } from "emblor";
 import { toast } from "sonner";
+import Link from "next/link";
 
 export default function AddProjectPage() {
   const [name, setName] = useState("");
@@ -79,7 +80,10 @@ export default function AddProjectPage() {
   return (
     <main className="max-w-2xl mx-auto py-10 px-6">
       <Navbar />
-      <h1 className="text-3xl font-bold mb-8">Add a New Project</h1>
+      <h1 className="text-3xl font-bold mb-4">Add a New Project</h1>
+      <Button type="button" className="mb-6" asChild>
+        <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
+      </Button>
 
       <form className="space-y-6" onSubmit={submitProject}>
         <div className="space-y-2">
