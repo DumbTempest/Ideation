@@ -43,9 +43,10 @@ export default function ProjectsPage() {
   const length = projects.length;
 
   return (
-    <main className="min-h-screen px-6 py-10">
+    <main className="min-h-screen bg-slate-950 px-6 py-10">
       <Navbar />
-      <h1 className="text-3xl font-bold text-center mb-10">Database ({length})</h1>
+      <h1 className="text-3xl font-bold text-center mb-10 bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 text-transparent bg-clip-text font-bold" style={{ WebkitTextStroke: "1px white" }}>Database ({length})</h1>
+
 
       <div className="mb-8">
         <DbSearchbar typedText="" onSearch={handleSearch} />

@@ -5,15 +5,15 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({hamburgercolor}) {
   const [isOpen, setOpen] = useState(false);
   const toggleNavbar = () => {
     setOpen(!isOpen);
   };
   return (
     <>
-      <div className="fixed top-6 right-7 z-50">
-        <Hamburger toggled={isOpen} toggle={setOpen} />
+      <div className="fixed top-5 right-7 z-50 bg-black rounded-full p-1 border border-white border-solid border-2">
+        <Hamburger toggled={isOpen} toggle={setOpen} color={hamburgercolor || "#6d21bb"} />
       </div>
 
       <motion.div

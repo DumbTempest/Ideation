@@ -29,56 +29,66 @@ export default function SourcesPage() {
     },
   ];
 
-        return (
-          <>
-    <Navbar />
-    <div className="max-w-4xl mx-auto p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Sources</h1>
+  return (
+    <>
+      <div className="bg-slate-950 min-h-screen">
+        <Navbar hamburgercolor="#6d21bb" />
 
-      <div className="border rounded-md overflow-hidden">
-        <Table>
-          <TableHeader className="bg-gray-100">
-            <TableRow>
-              <TableHead>S.No</TableHead>
-              <TableHead>Source Name</TableHead>
-              <TableHead>Source Link</TableHead>
-            </TableRow>
-          </TableHeader>
+        <div className="max-w-4xl mx-auto p-6 space-y-6">
+          <h1 className="text-2xl font-semibold text-white">
+            Sources
+          </h1>
 
-          <TableBody>
-            {sources.length === 0 ? (
-              <TableRow>
-                <TableCell
-                  colSpan="4"
-                  className="text-center text-gray-500 py-4"
-                >
-                  No sources added
-                </TableCell>
-              </TableRow>
-            ) : (
-              sources.map((s, i) => (
-                <TableRow
-                  key={s.id}
-                  className="odd:bg-gray-50 even:bg-white"
-                >
-                  <TableCell>{i + 1}</TableCell>
-                  <TableCell>{s.name}</TableCell>
-                  <TableCell>
-                    <a
-                      href={s.link}
-                      className="underline text-blue-600"
-                      target="_blank"
-                    >
-                      {s.link}
-                    </a>
-                  </TableCell>
+          <div className="border border-slate-800 rounded-xl overflow-hidden bg-slate-900/60 backdrop-blur">
+            <Table>
+              <TableHeader className="bg-slate-900">
+                <TableRow>
+                  <TableHead className="text-slate-300">S.No</TableHead>
+                  <TableHead className="text-slate-300">Source Name</TableHead>
+                  <TableHead className="text-slate-300">Source Link</TableHead>
                 </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
+              </TableHeader>
+
+              <TableBody>
+                {sources.length === 0 ? (
+                  <TableRow>
+                    <TableCell
+                      colSpan="3"
+                      className="text-center text-slate-500 py-6"
+                    >
+                      No sources added
+                    </TableCell>
+                  </TableRow>
+                ) : (
+                  sources.map((s, i) => (
+                    <TableRow
+                      key={s.id}
+                      className="odd:bg-slate-900/40 even:bg-slate-900/20 border-slate-800"
+                    >
+                      <TableCell className="text-slate-300">
+                        {i + 1}
+                      </TableCell>
+                      <TableCell className="text-slate-200">
+                        {s.name}
+                      </TableCell>
+                      <TableCell>
+                        <a
+                          href={s.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-purple-400 hover:text-purple-300 underline underline-offset-4"
+                        >
+                          {s.link}
+                        </a>
+                      </TableCell>
+                    </TableRow>
+                  ))
+                )}
+              </TableBody>
+            </Table>
+          </div>
+        </div>
       </div>
-    </div>
     </>
   );
 }
