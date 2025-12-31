@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Navbar from "./navbar";
 import Link from "next/link";
-
+import VantaBackground from "./VantaBackground";
 export default function Home() {
   const isDark = true;
 
   return (
     <>
-      <div className="bg-slate-950 min-h-screen overflow-hidden">
+       <VantaBackground />
+      <div className="bg-black/40 min-h-screen overflow-hidden">
         <main className="min-h-screen flex flex-col items-center justify-center px-4 relative">
           {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-3xl" /> */}
 
