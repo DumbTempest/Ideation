@@ -122,3 +122,93 @@
 }
 
 
+
+.font-tektur {
+  font-family: var(--font-tektur), sans-serif;
+}
+
+
+
+/* ===== Hover Card ===== */
+.hover-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hover-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(120, 90, 160, 0.85),
+    rgba(60, 40, 90, 0.85)
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.hover-card:hover::after {
+  opacity: 0.2;
+}
+
+/* Title lift */
+.hover-card h3 {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.75s ease;
+}
+
+.hover-card:hover h3 {
+  transform: translateY(-8px);
+}
+
+/*  Animated Border Button */
+.border-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0;
+}
+
+.border-btn > span {
+  position: relative;
+  display: block;
+  padding: 0.75rem 2rem;
+  z-index: 2;
+}
+
+/* Border draw */
+.border-btn span::before,
+.border-btn span::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid white;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.border-btn span::before {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.border-btn span::after {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.hover-card:hover .border-btn span::before {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.hover-card:hover .border-btn span::after {
+  transform: scaleY(1);
+  opacity: 1;
+}

@@ -16,8 +16,8 @@ export default function VantaBackground() {
         THREE,
         backgroundColor: 0x05060f,
         baseColor: 0x6d21bb,
-        amplitude: 1.2,
-        size: 1,
+        amplitude: 0.9,
+        size: 0.7,
       });
     };
 
@@ -29,13 +29,15 @@ export default function VantaBackground() {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      style={{
-        position: 'fixed',
-        inset: 0,
-        zIndex: -1,
-      }}
-    />
-  );
+  <div
+    ref={ref}
+    style={{
+      position: 'fixed',
+      inset: 0,
+      zIndex: -1,
+      opacity: 1,   // 0 → fully transparent, 1 → fully opaque
+    }}
+  />
+);
+
 }

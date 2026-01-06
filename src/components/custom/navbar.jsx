@@ -12,7 +12,7 @@ export default function Navbar({hamburgercolor}) {
   };
   return (
     <>
-      <div className="fixed top-5 right-7 z-50 bg-black rounded-full p-1 border border-white border-solid border-2">
+      <div className="fixed top-5 right-7 z-50 bg-black rounded-full  border border-white border-solid border-2">
         <Hamburger toggled={isOpen} toggle={setOpen} color={hamburgercolor || "#6d21bb"} />
       </div>
 
@@ -20,11 +20,11 @@ export default function Navbar({hamburgercolor}) {
         initial={{ width: 0, opacity: 0 }}
         animate={
           isOpen
-            ? { width: "38vw", opacity: 1, x: -40, y: 15 }
+            ? { width: "38vw", opacity: 0.7, x: -40, y: 15 }
             : { width: 0, opacity: 0, x: 0, y: 15 }
         }
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
-        className="fixed top-2 right-14 h-12 bg-white  rounded-full border border-black flex items-center px-6 gap-8 z-40"
+        className="fixed top-2 right-14 h-10 bg-transparent text-white rounded-full border border-purple-400 flex items-center px-6 gap-8 z-40"
       >
         {isOpen && (
           <>  
