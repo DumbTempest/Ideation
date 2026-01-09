@@ -7,15 +7,7 @@ export async function POST(req) {
 
     const body = await req.json();
 
-    const project = await Project.create({
-      name: body.name,
-      description: body.description,
-      techStack: body.techStack,
-      domain: body.domain,
-      difficulty: body.difficulty,
-      label: body.label,
-      links: body.links || [],
-    });
+    const project = await Project.create(body);
 
     return Response.json(project, { status: 201 });
   } catch (error) {

@@ -20,14 +20,26 @@ import Link from "next/link";
 export default function AddProjectPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+
+  const [label, setLabel] = useState(""); 
+  const [projectType, setProjectType] = useState("");
   const [difficulty, setDifficulty] = useState("");
-  const [label, setLabel] = useState("");
+
+  const [tags, setTags] = useState([]);
+  const [techTags, setTechTags] = useState([]);
+  const [domainTags, setDomainTags] = useState([]);
+  const [prerequisites, setPrerequisites] = useState([]);
+  const [outcomes, setOutcomes] = useState([]);
+
+  const [activeTagIndex, setActiveTagIndex] = useState(null);
+  const [activeTechIndex, setActiveTechIndex] = useState(null);
+  const [activeDomainIndex, setActiveDomainIndex] = useState(null);
+  const [activePrereqIndex, setActivePrereqIndex] = useState(null);
+  const [activeOutcomeIndex, setActiveOutcomeIndex] = useState(null);
+  const [effortLevel, setEffortLevel] = useState("");
+  const [effortDescription, setEffortDescription] = useState("");
 
   const [links, setLinks] = useState([""]);
-  const [techTags, setTechTags] = useState([]);
-  const [activeTechIndex, setActiveTechIndex] = useState(null);
-  const [domainTags, setDomainTags] = useState([]);
-  const [activeDomainIndex, setActiveDomainIndex] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -45,10 +57,20 @@ export default function AddProjectPage() {
     const projectData = {
       name,
       description,
+      label,
+      projectType,
+      tags: tags.map((t) => t.text),
       techStack: techTags.map((t) => t.text),
       domain: domainTags.map((d) => d.text),
-      difficulty,
-      label,
+      difficulty: {
+        level: difficulty,
+        prerequisites: prerequisites.map((p) => p.text),
+      },
+      effort: {
+        level: effortLevel,
+        description: effortDescription,
+      },
+      outcomes: outcomes.map((o) => o.text),
       links,
     };
 
@@ -61,17 +83,23 @@ export default function AddProjectPage() {
 
       if (!res.ok) throw new Error("Failed");
 
-      toast.success("Project Added Yipeeee!");
+      toast.success("Project added successfully");
 
       setName("");
       setDescription("");
-      setDifficulty("");
       setLabel("");
-      setLinks([""]);
+      setProjectType("");
+      setDifficulty("");
+      setTags([]);
       setTechTags([]);
       setDomainTags([]);
-    } catch (error) {
-      toast.error("Event has not been created");
+      setPrerequisites([]);
+      setOutcomes([]);
+      setEffortLevel("");
+      setEffortDescription("");
+      setLinks([""]);
+    } catch {
+      toast.error("Project creation failed");
     }
 
     setLoading(false);
@@ -80,7 +108,9 @@ export default function AddProjectPage() {
   return (
     <main className="max-w-2xl mx-auto py-10 px-6">
       <Navbar />
+
       <h1 className="text-3xl font-bold mb-4">Add a New Project</h1>
+
       <Button type="button" className="mb-6" asChild>
         <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
       </Button>
@@ -89,7 +119,6 @@ export default function AddProjectPage() {
         <div className="space-y-2">
           <Label>Project Name</Label>
           <Input
-            placeholder="Enter project name"
             className="border border-black border-2"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -97,9 +126,8 @@ export default function AddProjectPage() {
         </div>
 
         <div className="space-y-2">
-          <Label>Clear Description of the Project</Label>
+          <Label>Description</Label>
           <Textarea
-            placeholder="Describe the project clearly..."
             className="min-h-[120px] border border-black border-2"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -107,10 +135,47 @@ export default function AddProjectPage() {
         </div>
 
         <div className="space-y-2">
+          <Label>Project Label</Label>
+          <Input
+            placeholder="e.g. Start on path of 10x Coder"
+            className="border border-black border-2"
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label>Project Type</Label>
+          <Select value={projectType} onValueChange={setProjectType}>
+            <SelectTrigger className="border border-black border-2">
+              <SelectValue placeholder="Select project type" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="guided">Guided</SelectItem>
+              <SelectItem value="balanced">Balanced</SelectItem>
+              <SelectItem value="exploratory">Exploratory</SelectItem>
+              <SelectItem value="research">Research</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+
+        <div className="space-y-2">
+          <Label>Project Tags</Label>
+          <div className="border border-black border-2 rounded-md">
+            <TagInput
+              tags={tags}
+              setTags={setTags}
+              activeTagIndex={activeTagIndex}
+              setActiveTagIndex={setActiveTagIndex}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
           <Label>Tech Stack</Label>
           <div className="border border-black border-2 rounded-md">
             <TagInput
-              placeholder="Write tech"
               tags={techTags}
               setTags={setTechTags}
               activeTagIndex={activeTechIndex}
@@ -119,11 +184,11 @@ export default function AddProjectPage() {
           </div>
         </div>
 
+
         <div className="space-y-2">
           <Label>Domain</Label>
           <div className="border border-black border-2 rounded-md">
             <TagInput
-              placeholder="eg: Web Dev, ML, AI"
               tags={domainTags}
               setTags={setDomainTags}
               activeTagIndex={activeDomainIndex}
@@ -132,55 +197,83 @@ export default function AddProjectPage() {
           </div>
         </div>
 
+
         <div className="space-y-2">
-          <Label>Difficulty Level</Label>
-          <Select onValueChange={setDifficulty} value={difficulty}>
+          <Label>Difficulty</Label>
+          <Select value={difficulty} onValueChange={setDifficulty}>
             <SelectTrigger className="border border-black border-2">
               <SelectValue placeholder="Select difficulty" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="10x">10x</SelectItem>
               <SelectItem value="newbie">Newbie</SelectItem>
               <SelectItem value="moderate">Moderate</SelectItem>
               <SelectItem value="cracked">Cracked</SelectItem>
+              <SelectItem value="10x">10x</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
+
         <div className="space-y-2">
-          <Label>Label</Label>
+          <Label>Difficulty Prerequisites</Label>
+          <div className="border border-black border-2 rounded-md">
+            <TagInput
+              tags={prerequisites}
+              setTags={setPrerequisites}
+              activeTagIndex={activePrereqIndex}
+              setActiveTagIndex={setActivePrereqIndex}
+            />
+          </div>
+        </div>
+
+
+        <div className="space-y-2">
+          <Label>Effort Level</Label>
           <Input
-            placeholder="Enter any special label"
             className="border border-black border-2"
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
+            value={effortLevel}
+            onChange={(e) => setEffortLevel(e.target.value)}
           />
         </div>
 
         <div className="space-y-2">
-          <Label>Similar Project Links (Optional)</Label>
+          <Label>Effort Description</Label>
+          <Textarea
+            className="border border-black border-2"
+            value={effortDescription}
+            onChange={(e) => setEffortDescription(e.target.value)}
+          />
+        </div>
 
-          {links.map((link, index) => (
+
+        <div className="space-y-2">
+          <Label>Project Outcomes</Label>
+          <div className="border border-black border-2 rounded-md">
+            <TagInput
+              tags={outcomes}
+              setTags={setOutcomes}
+              activeTagIndex={activeOutcomeIndex}
+              setActiveTagIndex={setActiveOutcomeIndex}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <Label>Related Links</Label>
+          {links.map((link, i) => (
             <Input
-              key={index}
-              placeholder="https://example.com"
+              key={i}
+              className="border border-black border-2 mb-2"
               value={link}
-              className="mb-2 border border-black border-2"
-              onChange={(e) => updateLink(e.target.value, index)}
+              onChange={(e) => updateLink(e.target.value, i)}
             />
           ))}
-
-          <Button variant="secondary" type="button" onClick={addLink}>
+          <Button type="button" variant="secondary" onClick={addLink}>
             + Add another link
           </Button>
         </div>
 
-        <Button
-          className="w-full mb-8"
-          size="lg"
-          type="submit"
-          disabled={loading}
-        >
+        <Button type="submit" className="w-full" disabled={loading}>
           {loading ? "Submitting..." : "Submit Project"}
         </Button>
       </form>

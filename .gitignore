@@ -43,3 +43,11 @@ next-env.d.ts
 
 # custom
 sources
+
+/wait.js
+/testingFolder/testing.js
+/testingFolder/test_data.js
+/testingFolder/Idea_Site.projects_backup.json
+
+
+/testingFolder/idea_Site.projects.json
