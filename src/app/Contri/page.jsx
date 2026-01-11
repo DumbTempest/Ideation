@@ -110,7 +110,7 @@ export default function AddProjectPage() {
         </Button>
 
         <form onSubmit={submitProject} className="space-y-6">
-          
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Project Name</Label>
             <Input
@@ -120,7 +120,7 @@ export default function AddProjectPage() {
             />
           </div>
 
-   
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Description</Label>
             <Textarea
@@ -130,7 +130,7 @@ export default function AddProjectPage() {
             />
           </div>
 
-   
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Project Label</Label>
             <Input
@@ -140,7 +140,7 @@ export default function AddProjectPage() {
             />
           </div>
 
- 
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Project Type</Label>
             <Select value={projectType} onValueChange={setProjectType}>
@@ -148,10 +148,10 @@ export default function AddProjectPage() {
                 <SelectValue placeholder="Select project type" />
               </SelectTrigger>
               <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
-                <SelectItem value="guided">Guided</SelectItem>
+                <SelectItem value="mini">mini</SelectItem>
                 <SelectItem value="balanced">Balanced</SelectItem>
-                <SelectItem value="exploratory">Exploratory</SelectItem>
                 <SelectItem value="research">Research</SelectItem>
+                <SelectItem value="open-source">Open Source</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -172,7 +172,7 @@ export default function AddProjectPage() {
             <TagInputCustom tags={domainTags} setTags={setDomainTags} />
           </div>
 
-     
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Difficulty</Label>
             <Select value={difficulty} onValueChange={setDifficulty}>
@@ -188,7 +188,7 @@ export default function AddProjectPage() {
             </Select>
           </div>
 
-   
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Prerequisites</Label>
             <TagInputCustom
@@ -225,7 +225,7 @@ export default function AddProjectPage() {
             />
           </div>
 
-        
+
           <div className="space-y-2">
             <Label className="text-zinc-300">Outcomes</Label>
             <TagInputCustom tags={outcomes} setTags={setOutcomes} />
