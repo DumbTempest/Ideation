@@ -212,3 +212,23 @@
   transform: scaleY(1);
   opacity: 1;
 }
+
+
+.prism-smooth canvas {
+  background: black;
+  filter: blur(18px) saturate(130%) contrast(110%);
+  transform: scale(1.12);
+  image-rendering: auto;
+}
+
+@media (max-width: 768px) {
+  .prism-smooth {
+    display: none;
+  }
+}
+
+
+/* temporary pls remove later */
+body, html {
+  background-color: rgb(0, 0, 0);
+}
