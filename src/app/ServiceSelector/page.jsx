@@ -11,7 +11,8 @@ export default function ServiceSelector() {
     <>
       {/* <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/20 rounded-full blur-3xl" /> */}
 
-      <div className="bg-slate-950 min-h-screen overflow-hidden">
+      <div className="bg-black
+       min-h-screen overflow-hidden">
         <Navbar hamburgercolor="#6d21bb" />
 
         <div className="min-h-screen flex flex-col items-center justify-center p-6">

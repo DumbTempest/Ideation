@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Navbar from "@/components/custom/navbar";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -12,16 +13,14 @@ import {
   SelectItem,
   SelectValue,
 } from "@/components/ui/select";
-import Navbar from "@/components/custom/navbar";
-import { TagInput } from "emblor";
-import { toast } from "sonner";
 import Link from "next/link";
+import { toast } from "sonner";
+import TagInputCustom from "@/components/custom/tagInputCustom";
 
 export default function AddProjectPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-
-  const [label, setLabel] = useState(""); 
+  const [label, setLabel] = useState("");
   const [projectType, setProjectType] = useState("");
   const [difficulty, setDifficulty] = useState("");
 
@@ -31,16 +30,10 @@ export default function AddProjectPage() {
   const [prerequisites, setPrerequisites] = useState([]);
   const [outcomes, setOutcomes] = useState([]);
 
-  const [activeTagIndex, setActiveTagIndex] = useState(null);
-  const [activeTechIndex, setActiveTechIndex] = useState(null);
-  const [activeDomainIndex, setActiveDomainIndex] = useState(null);
-  const [activePrereqIndex, setActivePrereqIndex] = useState(null);
-  const [activeOutcomeIndex, setActiveOutcomeIndex] = useState(null);
   const [effortLevel, setEffortLevel] = useState("");
   const [effortDescription, setEffortDescription] = useState("");
 
   const [links, setLinks] = useState([""]);
-
   const [loading, setLoading] = useState(false);
 
   const addLink = () => setLinks([...links, ""]);
@@ -59,18 +52,18 @@ export default function AddProjectPage() {
       description,
       label,
       projectType,
-      tags: tags.map((t) => t.text),
-      techStack: techTags.map((t) => t.text),
-      domain: domainTags.map((d) => d.text),
+      tags,
+      techStack: techTags,
+      domain: domainTags,
       difficulty: {
         level: difficulty,
-        prerequisites: prerequisites.map((p) => p.text),
+        prerequisites,
       },
       effort: {
         level: effortLevel,
         description: effortDescription,
       },
-      outcomes: outcomes.map((o) => o.text),
+      outcomes,
       links,
     };
 
@@ -106,177 +99,163 @@ export default function AddProjectPage() {
   };
 
   return (
-    <main className="max-w-2xl mx-auto py-10 px-6">
+    <main className="min-h-screen bg-black text-white">
       <Navbar />
 
-      <h1 className="text-3xl font-bold mb-4">Add a New Project</h1>
+      <div className="max-w-2xl mx-auto py-10 px-6 space-y-8">
+        <h1 className="text-3xl font-bold">Add a New Project</h1>
 
-      <Button type="button" className="mb-6" asChild>
-        <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
-      </Button>
+        <Button asChild>
+          <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
+        </Button>
 
-      <form className="space-y-6" onSubmit={submitProject}>
-        <div className="space-y-2">
-          <Label>Project Name</Label>
-          <Input
-            className="border border-black border-2"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label>Description</Label>
-          <Textarea
-            className="min-h-[120px] border border-black border-2"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label>Project Label</Label>
-          <Input
-            placeholder="e.g. Start on path of 10x Coder"
-            className="border border-black border-2"
-            value={label}
-            onChange={(e) => setLabel(e.target.value)}
-          />
-        </div>
-
-        <div className="space-y-2">
-          <Label>Project Type</Label>
-          <Select value={projectType} onValueChange={setProjectType}>
-            <SelectTrigger className="border border-black border-2">
-              <SelectValue placeholder="Select project type" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="guided">Guided</SelectItem>
-              <SelectItem value="balanced">Balanced</SelectItem>
-              <SelectItem value="exploratory">Exploratory</SelectItem>
-              <SelectItem value="research">Research</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-
-        <div className="space-y-2">
-          <Label>Project Tags</Label>
-          <div className="border border-black border-2 rounded-md">
-            <TagInput
-              tags={tags}
-              setTags={setTags}
-              activeTagIndex={activeTagIndex}
-              setActiveTagIndex={setActiveTagIndex}
+        <form onSubmit={submitProject} className="space-y-6">
+          
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Project Name</Label>
+            <Input
+              className="bg-black border-2 border-zinc-700 text-white"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className="space-y-2">
-          <Label>Tech Stack</Label>
-          <div className="border border-black border-2 rounded-md">
-            <TagInput
-              tags={techTags}
-              setTags={setTechTags}
-              activeTagIndex={activeTechIndex}
-              setActiveTagIndex={setActiveTechIndex}
+   
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Description</Label>
+            <Textarea
+              className="bg-black border-2 border-zinc-700 text-white min-h-[120px]"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
-        </div>
 
-
-        <div className="space-y-2">
-          <Label>Domain</Label>
-          <div className="border border-black border-2 rounded-md">
-            <TagInput
-              tags={domainTags}
-              setTags={setDomainTags}
-              activeTagIndex={activeDomainIndex}
-              setActiveTagIndex={setActiveDomainIndex}
+   
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Project Label</Label>
+            <Input
+              className="bg-black border-2 border-zinc-700 text-white"
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
             />
           </div>
-        </div>
 
+ 
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Project Type</Label>
+            <Select value={projectType} onValueChange={setProjectType}>
+              <SelectTrigger className="bg-black border-2 border-zinc-700">
+                <SelectValue placeholder="Select project type" />
+              </SelectTrigger>
+              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+                <SelectItem value="guided">Guided</SelectItem>
+                <SelectItem value="balanced">Balanced</SelectItem>
+                <SelectItem value="exploratory">Exploratory</SelectItem>
+                <SelectItem value="research">Research</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
-        <div className="space-y-2">
-          <Label>Difficulty</Label>
-          <Select value={difficulty} onValueChange={setDifficulty}>
-            <SelectTrigger className="border border-black border-2">
-              <SelectValue placeholder="Select difficulty" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="newbie">Newbie</SelectItem>
-              <SelectItem value="moderate">Moderate</SelectItem>
-              <SelectItem value="cracked">Cracked</SelectItem>
-              <SelectItem value="10x">10x</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+          {/* Tags */}
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Project Tags</Label>
+            <TagInputCustom tags={tags} setTags={setTags} />
+          </div>
 
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Tech Stack</Label>
+            <TagInputCustom tags={techTags} setTags={setTechTags} />
+          </div>
 
-        <div className="space-y-2">
-          <Label>Difficulty Prerequisites</Label>
-          <div className="border border-black border-2 rounded-md">
-            <TagInput
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Domain</Label>
+            <TagInputCustom tags={domainTags} setTags={setDomainTags} />
+          </div>
+
+     
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Difficulty</Label>
+            <Select value={difficulty} onValueChange={setDifficulty}>
+              <SelectTrigger className="bg-black border-2 border-zinc-700">
+                <SelectValue placeholder="Select difficulty" />
+              </SelectTrigger>
+              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+                <SelectItem value="newbie">Newbie</SelectItem>
+                <SelectItem value="moderate">Moderate</SelectItem>
+                <SelectItem value="cracked">Cracked</SelectItem>
+                <SelectItem value="10x">10x</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+   
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Prerequisites</Label>
+            <TagInputCustom
               tags={prerequisites}
               setTags={setPrerequisites}
-              activeTagIndex={activePrereqIndex}
-              setActiveTagIndex={setActivePrereqIndex}
             />
           </div>
-        </div>
+
+          {/* Effort */}
+
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Effort Level</Label>
+            <Select value={effortLevel} onValueChange={setEffortLevel}>
+              <SelectTrigger className="bg-black border-2 border-zinc-700">
+                <SelectValue placeholder="Select effort level" />
+              </SelectTrigger>
+              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+                <SelectItem value="low">low</SelectItem>
+                <SelectItem value="medium">medium</SelectItem>
+                <SelectItem value="slightly intensive">slightly intensive</SelectItem>
+                <SelectItem value="crazy">crazy</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
 
 
-        <div className="space-y-2">
-          <Label>Effort Level</Label>
-          <Input
-            className="border border-black border-2"
-            value={effortLevel}
-            onChange={(e) => setEffortLevel(e.target.value)}
-          />
-        </div>
 
-        <div className="space-y-2">
-          <Label>Effort Description</Label>
-          <Textarea
-            className="border border-black border-2"
-            value={effortDescription}
-            onChange={(e) => setEffortDescription(e.target.value)}
-          />
-        </div>
-
-
-        <div className="space-y-2">
-          <Label>Project Outcomes</Label>
-          <div className="border border-black border-2 rounded-md">
-            <TagInput
-              tags={outcomes}
-              setTags={setOutcomes}
-              activeTagIndex={activeOutcomeIndex}
-              setActiveTagIndex={setActiveOutcomeIndex}
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Effort Description</Label>
+            <Textarea
+              className="bg-black border-2 border-zinc-700 text-white"
+              value={effortDescription}
+              onChange={(e) => setEffortDescription(e.target.value)}
             />
           </div>
-        </div>
 
-        <div className="space-y-2">
-          <Label>Related Links</Label>
-          {links.map((link, i) => (
-            <Input
-              key={i}
-              className="border border-black border-2 mb-2"
-              value={link}
-              onChange={(e) => updateLink(e.target.value, i)}
-            />
-          ))}
-          <Button type="button" variant="secondary" onClick={addLink}>
-            + Add another link
+        
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Outcomes</Label>
+            <TagInputCustom tags={outcomes} setTags={setOutcomes} />
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-zinc-300">Related Links</Label>
+            {links.map((link, i) => (
+              <Input
+                key={i}
+                className="bg-black border-2 border-zinc-700 text-white"
+                value={link}
+                onChange={(e) => updateLink(e.target.value, i)}
+              />
+            ))}
+            <Button
+              type="button"
+              variant="secondary"
+              className="bg-zinc-800 hover:bg-zinc-700 text-white"
+              onClick={addLink}
+            >
+              + Add another link
+            </Button>
+          </div>
+
+          <Button type="submit" className="w-full bg-white hover:bg-gray-400 text-black" disabled={loading}>
+            {loading ? "Submitting..." : "Submit Project"}
           </Button>
-        </div>
-
-        <Button type="submit" className="w-full" disabled={loading}>
-          {loading ? "Submitting..." : "Submit Project"}
-        </Button>
-      </form>
+        </form>
+      </div>
     </main>
   );
 }
