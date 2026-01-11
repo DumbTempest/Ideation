@@ -56,7 +56,7 @@ export default function ExploreMain() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="order-2 md:order-1"
           >
-            <Link href="/">
+            <Link href="/recom">
               <button className="border-2 border-slate-600 hover:border-pink-400 bg-transparent relative z-10 font-tektur px-8 py-3 whitespace-nowrap rounded-lg transition-colors duration-300 text-white text-lg">
                 <span>Let's see</span>
               </button>

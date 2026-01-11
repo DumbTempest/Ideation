@@ -55,7 +55,7 @@ export default function ServiceSelector() {
                     based on your skill level and preferences.
                   </p>
                   <Button className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white">
-                    Select
+                    <Link href="/recom">Select</Link>
                   </Button>
                 </CardContent>
               </Card>

@@ -70,7 +70,9 @@ export default function Home() {
               </Button>
 
               <Button className="w-full ml-4 -skew-x-12 sm:w-auto font-tektur bg-transparent hover:bg-slate-600/50 border-2 border-slate-700 hover:border-black text-slate-200 px-10 py-4 rounded-none text-base font-medium tracking-wide transition-all duration-300 hover:translate-y-[-2px] text-black">
+              <Link href="/recom" className="flex items-center gap-2">
                 Browse Ideas
+                </Link>
               </Button>
             </div>
 
