@@ -7,8 +7,10 @@ import {
   CardTitle,
   CardContent,
 } from "@/components/ui/card";
+import { useRouter } from "next/navigation";
 
 function FadeText({ children, lines }) {
+  
   const ref = useRef(null);
   const [overflow, setOverflow] = useState(false);
 
@@ -57,6 +59,7 @@ function FadeText({ children, lines }) {
 }
 
 export default function ProjectCard({
+  id,
   name,
   description,
   domain,
@@ -64,9 +67,10 @@ export default function ProjectCard({
   label,
   difficulty,
 }) {
+  const router = useRouter();
   return (
-    <Card className="w-full max-w-md h-[250px] bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur flex flex-col justify-between">
-      <div>
+    <Card onClick={() => router.push(`/ProjectDB/${id}`)} className="w-full max-w-md h-[250px] bg-slate-900/60 border border-slate-800 rounded-2xl backdrop-blur flex flex-col justify-between">
+      <div >
         <CardHeader>
           <CardTitle className="text-white text-lg">
             {name}

@@ -53,9 +53,10 @@ export default function ProjectsPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => (
+        {projects.map((project) => (
           <ProjectCard
-            key={index}
+            key={project._id }
+            id ={project._id}
             name={project.name}
             description={project.description}
             domain={project.domain}

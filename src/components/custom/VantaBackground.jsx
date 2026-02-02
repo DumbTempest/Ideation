@@ -18,6 +18,7 @@ export default function VantaBackground() {
         baseColor: 0x6d21bb,
         amplitude: 0.9,
         size: 0.7,
+        
       });
     };
 
