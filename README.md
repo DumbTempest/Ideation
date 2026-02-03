@@ -40,4 +40,4 @@ This project is private and proprietary. All rights reserved.
 
 ---
 
-Built with Next.js 16, React 19, and MongoDB
+Built with ❤️ by DumbTempest
