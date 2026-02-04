@@ -53,3 +53,7 @@ sources
 /testingFolder/idea_Site.projects.json
 
 .vscode/
+
+/src/lib/scripts/exportProjectsForGPT.js
+/src/lib/scripts/importMilestonesFromGPT.js
+/src/lib/scripts/gpt-output.json

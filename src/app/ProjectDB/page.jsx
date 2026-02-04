@@ -62,7 +62,7 @@ export default function ProjectsPage() {
             domain={project.domain}
             techStack={project.techStack}
             label={project.label}
-            difficulty={project.difficulty}
+            difficulty={project.difficulty.level}
           />
         ))}
       </div>

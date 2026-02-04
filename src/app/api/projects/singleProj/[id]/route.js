@@ -4,7 +4,7 @@ import Project from "@/lib/models/Project";
 import mongoose from "mongoose";
 
 export async function GET(req, context) {
-  const { id } = await context.params; // ✅ REQUIRED IN NEXT 16
+  const { id } = await context.params;
 
   await dbConnect();
 

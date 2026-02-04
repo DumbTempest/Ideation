@@ -7,7 +7,7 @@ import { useDebounce } from 'use-debounce';
 
 export default function DbSearchbar({ typedText = "", onSearch }) {
   const [value, setValue] = useState(typedText);
-  const [debouncedValue] = useDebounce(value, 400);
+  const [debouncedValue] = useDebounce(value, 700);
 
   useEffect(() => {
     if (onSearch) onSearch(debouncedValue);
@@ -17,7 +17,7 @@ export default function DbSearchbar({ typedText = "", onSearch }) {
     <div className="relative w-full max-w-md mx-auto">
       <Input
         type="text"
-        className="w-full pr-10 rounded-lg border border-gray-300 px-4 py-2 placeholder-transparent focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+        className="w-full pr-10 rounded-lg border border-gray-300 px-4 py-2 placeholder-transparent focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-white"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search..."
