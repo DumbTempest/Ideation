@@ -1,6 +1,6 @@
 # Ideation
 
-A web application that helps developers discover and select their next project through an intelligent recommendation system.
+A web application that helps developers discover and select their next project through our database and intelligent recommendation system.
 
 ## What Does This App Do?
 
