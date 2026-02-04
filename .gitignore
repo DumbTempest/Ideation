@@ -54,6 +54,6 @@ sources
 
 .vscode/
 
-/src/lib/scripts/exportProjectsForGPT.js
-/src/lib/scripts/importMilestonesFromGPT.js
-/src/lib/scripts/gpt-output.json
+/src/lib/scripts/exportProjects.js
+/src/lib/scripts/importMilestones.js
+/src/lib/scripts/output.json
