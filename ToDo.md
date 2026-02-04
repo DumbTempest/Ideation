@@ -1,11 +1,15 @@
 # FrontEnd
 
-1. Colour grading equal on all pages [ ]
-2. Add relevant motion shii [ ]
-3. change/overhaul db page [ ] 
-4. Text Color across several pages [ ]
-5. MainPage Upper part
-6. MainPage Middle part
-7. MainPage lower part
+- [ ] Colour grading equal on all pages
+- [ ] Add relevant motion shii
+- [ ] Change / overhaul DB page
+- [ ] Text color across several pages
+- [ ] MainPage – Upper part
+- [ ] MainPage – Middle part
+- [ ] MainPage – Lower part
 
 # BackEnd
+
+- [ ] API structure cleanup
+- [X] Database schema fixes
+
