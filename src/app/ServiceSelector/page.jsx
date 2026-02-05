@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Navbar from "@/components/custom/navbar";
 import Link from "next/link";
+import Footer from "@/components/custom/footer";
 
 export default function ServiceSelector() {
   return (
@@ -65,6 +66,7 @@ export default function ServiceSelector() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

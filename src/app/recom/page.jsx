@@ -12,6 +12,7 @@ import {
 import TagInputCustom from "@/components/custom/tagInputCustom";
 import { Button } from "@/components/ui/button";
 import { normalizeInput, normalizeProject , recommendProjects } from "@/lib/recommendation/logic";
+import Navbar from "@/components/custom/navbar";
 
 export default function RecomPage() {
   const [difficulty, setDifficulty] = useState("");
@@ -59,6 +60,8 @@ export default function RecomPage() {
   };
 
   return (
+    <>
+   <Navbar />
     <div className="min-h-screen bg-black flex items-center justify-center px-6">
       <div className="w-full max-w-4xl flex flex-col items-center text-white">
         <h1 className="font-tektur text-3xl text-center mb-8">
@@ -178,5 +181,6 @@ export default function RecomPage() {
         )}
       </div>
     </div>
+      </>
   );
 }

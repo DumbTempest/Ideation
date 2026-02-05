@@ -5,6 +5,7 @@ import Navbar from "./navbar";
 import Link from "next/link";
 import ExploreMain from "./exploreMain";
 import Prism from "./Prism";
+import Footer from "./footer";
 
 export default function Home() {
   const isDark = true;
@@ -69,7 +70,7 @@ export default function Home() {
                 </Link>
               </Button>
 
-              <Button className="w-full ml-4 -skew-x-12 sm:w-auto font-tektur bg-transparent hover:bg-slate-600/50 border-2 border-slate-700 hover:border-black text-slate-200 px-10 py-4 rounded-none text-base font-medium tracking-wide transition-all duration-300 hover:translate-y-[-2px] text-black">
+              <Button className="w-full ml-4 -skew-x-12 sm:w-auto font-tektur bg-transparent hover:bg-slate-600/50 border-2 border-slate-700 hover:border-black text-slate-200 px-10 py-4 rounded-none text-base font-medium tracking-wide transition-all duration-300 hover:translate-y-[-2px] text-gray-500 sm:text-black">
               <Link href="/recom" className="flex items-center gap-2">
                 Browse Ideas
                 </Link>
@@ -98,6 +99,8 @@ export default function Home() {
 
         <ExploreMain />
       </div>
+
+      <Footer/>
     </>
   );
 }

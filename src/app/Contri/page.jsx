@@ -98,164 +98,172 @@ export default function AddProjectPage() {
     setLoading(false);
   };
 
-  return (
-    <main className="min-h-screen bg-black text-white">
-      <Navbar />
+return (
+  <>
+  <Navbar />
+  <div className="min-h-screen bg-black flex items-center justify-center px-6 text-white mt-10 mb-10">
+    <div className="w-full max-w-4xl flex flex-col items-center">
 
-      <div className="max-w-2xl mx-auto py-10 px-6 space-y-8">
-        <h1 className="text-3xl font-bold">Add a New Project</h1>
+      <h1 className="font-tektur text-3xl text-center mb-6">
+        Add a New Project
+      </h1>
 
-        <Button asChild>
-          <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
-        </Button>
+      <Button asChild className="mb-8">
+        <Link href="/ProjectDB/json-upload">Upload Bulk JSON</Link>
+      </Button>
 
-        <form onSubmit={submitProject} className="space-y-6">
+      <form
+        onSubmit={submitProject}
+        className="w-full flex flex-col gap-6"
+      >
+ 
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Project Name</Label>
+          <Input
+            className="bg-black border-2 border-zinc-700 text-white"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
 
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Project Name</Label>
+    
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Description</Label>
+          <Textarea
+            className="bg-black border-2 border-zinc-700 text-white min-h-[120px]"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+     
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Project Label</Label>
+          <Input
+            className="bg-black border-2 border-zinc-700 text-white"
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+          />
+        </div>
+
+ 
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Project Type</Label>
+          <Select value={projectType} onValueChange={setProjectType}>
+            <SelectTrigger className="bg-black border-2 border-zinc-700">
+              <SelectValue placeholder="Select project type" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+              <SelectItem value="mini">mini</SelectItem>
+              <SelectItem value="balanced">Balanced</SelectItem>
+              <SelectItem value="research">Research</SelectItem>
+              <SelectItem value="open-source">Open Source</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+ 
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Project Tags</Label>
+          <TagInputCustom tags={tags} setTags={setTags} />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Tech Stack</Label>
+          <TagInputCustom tags={techTags} setTags={setTechTags} />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Domain</Label>
+          <TagInputCustom tags={domainTags} setTags={setDomainTags} />
+        </div>
+
+  
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Difficulty</Label>
+          <Select value={difficulty} onValueChange={setDifficulty}>
+            <SelectTrigger className="bg-black border-2 border-zinc-700">
+              <SelectValue placeholder="Select difficulty" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+              <SelectItem value="newbie">Newbie</SelectItem>
+              <SelectItem value="moderate">Moderate</SelectItem>
+              <SelectItem value="cracked">Cracked</SelectItem>
+              <SelectItem value="10x">10x</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Prerequisites</Label>
+          <TagInputCustom
+            tags={prerequisites}
+            setTags={setPrerequisites}
+          />
+        </div>
+
+        {/* Effort */}
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Effort Level</Label>
+          <Select value={effortLevel} onValueChange={setEffortLevel}>
+            <SelectTrigger className="bg-black border-2 border-zinc-700">
+              <SelectValue placeholder="Select effort level" />
+            </SelectTrigger>
+            <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
+              <SelectItem value="low">low</SelectItem>
+              <SelectItem value="medium">medium</SelectItem>
+              <SelectItem value="slightly intensive">slightly intensive</SelectItem>
+              <SelectItem value="crazy">crazy</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Effort Description</Label>
+          <Textarea
+            className="bg-black border-2 border-zinc-700 text-white"
+            value={effortDescription}
+            onChange={(e) => setEffortDescription(e.target.value)}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Outcomes</Label>
+          <TagInputCustom tags={outcomes} setTags={setOutcomes} />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-zinc-300">Related Links</Label>
+          {links.map((link, i) => (
             <Input
+              key={i}
               className="bg-black border-2 border-zinc-700 text-white"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={link}
+              onChange={(e) => updateLink(e.target.value, i)}
             />
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Description</Label>
-            <Textarea
-              className="bg-black border-2 border-zinc-700 text-white min-h-[120px]"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Project Label</Label>
-            <Input
-              className="bg-black border-2 border-zinc-700 text-white"
-              value={label}
-              onChange={(e) => setLabel(e.target.value)}
-            />
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Project Type</Label>
-            <Select value={projectType} onValueChange={setProjectType}>
-              <SelectTrigger className="bg-black border-2 border-zinc-700">
-                <SelectValue placeholder="Select project type" />
-              </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
-                <SelectItem value="mini">mini</SelectItem>
-                <SelectItem value="balanced">Balanced</SelectItem>
-                <SelectItem value="research">Research</SelectItem>
-                <SelectItem value="open-source">Open Source</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Tags */}
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Project Tags</Label>
-            <TagInputCustom tags={tags} setTags={setTags} />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Tech Stack</Label>
-            <TagInputCustom tags={techTags} setTags={setTechTags} />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Domain</Label>
-            <TagInputCustom tags={domainTags} setTags={setDomainTags} />
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Difficulty</Label>
-            <Select value={difficulty} onValueChange={setDifficulty}>
-              <SelectTrigger className="bg-black border-2 border-zinc-700">
-                <SelectValue placeholder="Select difficulty" />
-              </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
-                <SelectItem value="newbie">Newbie</SelectItem>
-                <SelectItem value="moderate">Moderate</SelectItem>
-                <SelectItem value="cracked">Cracked</SelectItem>
-                <SelectItem value="10x">10x</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Prerequisites</Label>
-            <TagInputCustom
-              tags={prerequisites}
-              setTags={setPrerequisites}
-            />
-          </div>
-
-          {/* Effort */}
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Effort Level</Label>
-            <Select value={effortLevel} onValueChange={setEffortLevel}>
-              <SelectTrigger className="bg-black border-2 border-zinc-700">
-                <SelectValue placeholder="Select effort level" />
-              </SelectTrigger>
-              <SelectContent className="bg-zinc-900 border-zinc-700 text-white">
-                <SelectItem value="low">low</SelectItem>
-                <SelectItem value="medium">medium</SelectItem>
-                <SelectItem value="slightly intensive">slightly intensive</SelectItem>
-                <SelectItem value="crazy">crazy</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Effort Description</Label>
-            <Textarea
-              className="bg-black border-2 border-zinc-700 text-white"
-              value={effortDescription}
-              onChange={(e) => setEffortDescription(e.target.value)}
-            />
-          </div>
-
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Outcomes</Label>
-            <TagInputCustom tags={outcomes} setTags={setOutcomes} />
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-zinc-300">Related Links</Label>
-            {links.map((link, i) => (
-              <Input
-                key={i}
-                className="bg-black border-2 border-zinc-700 text-white"
-                value={link}
-                onChange={(e) => updateLink(e.target.value, i)}
-              />
-            ))}
-            <Button
-              type="button"
-              variant="secondary"
-              className="bg-zinc-800 hover:bg-zinc-700 text-white"
-              onClick={addLink}
-            >
-              + Add another link
-            </Button>
-          </div>
-
-          <Button type="submit" className="w-full bg-white hover:bg-gray-400 text-black" disabled={loading}>
-            {loading ? "Submitting..." : "Submit Project"}
+          ))}
+          <Button
+            type="button"
+            variant="secondary"
+            className="bg-zinc-800 hover:bg-zinc-700 text-white"
+            onClick={addLink}
+          >
+            + Add another link
           </Button>
-        </form>
-      </div>
-    </main>
-  );
+        </div>
+
+        <Button
+          type="submit"
+          disabled={loading}
+          className="bg-white text-black hover:bg-zinc-300 mt-4"
+        >
+          {loading ? "Submitting..." : "Submit Project"}
+        </Button>
+      </form>
+    </div>
+  </div>
+    </>
+);
+
 }

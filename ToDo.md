@@ -1,18 +1,20 @@
 # FrontEnd
 
-- [ ] Colour grading equal on all pages
+- [X] Colour grading equal on all pages
 - [ ] Add relevant motion shii
-- [ ] Change / overhaul DB page
-- [ ] Text color across several pages
-- [ ] MainPage – Upper part
-- [ ] MainPage – Middle part
-- [ ] MainPage – Lower part
+- [X] Change / overhaul DB page
+- [X] Text color across several pages
+- [X] MainPage – Upper part
+- [X] MainPage – Middle part
+- [X] MainPage – Lower part
 - [ ] DB Cards
-- [ ] Contribute Page complete overhaul
+- [X] Contribute Page complete overhaul
+- [X] Make and put footer on all pages
+
 
 # BackEnd
 
-- [ ] API structure cleanup
+- [X] API structure cleanup
 - [X] Database schema fixes
-- [ ] Hookup source page to db
+- [X] Hookup source page to db(temp fix)
 

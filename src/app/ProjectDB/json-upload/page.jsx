@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Navbar from "@/components/custom/navbar";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import Navbar from "@/components/custom/navbar";
 
 export default function JsonUploadPage() {
   const [jsonInput, setJsonInput] = useState("");
@@ -46,26 +46,37 @@ export default function JsonUploadPage() {
     setLoading(false);
   };
 
-  return (
-    <main className="max-w-3xl mx-auto py-10 px-6">
-      <Navbar />
-      <h1 className="text-3xl font-bold mb-6">Upload Project via JSON</h1>
+ return (
+  <>
+  <Navbar />
+  <div className="min-h-screen bg-black flex items-center justify-center px-6 text-white">
+    <div className="w-full max-w-4xl flex flex-col items-center">
 
-      <Textarea
-        placeholder={`Paste JSON here...\nSupports:\n- A single object\n- Multiple objects on new lines\n- A full JSON array`}
-        className="min-h-[300px] border border-black border-2"
-        value={jsonInput}
-        onChange={(e) => setJsonInput(e.target.value)}
-      />
+      <h1 className="font-tektur text-3xl text-center mb-8">
+        Upload Project via JSON
+      </h1>
 
-      <Button
-        className="mt-4 w-full"
-        size="lg"
-        onClick={submitJSON}
-        disabled={loading}
-      >
-        {loading ? "Submitting..." : "Submit JSON"}
-      </Button>
-    </main>
-  );
+      <div className="w-full space-y-6">
+        <Textarea
+          placeholder={`Paste JSON here...\nSupports:\n- A single object\n- Multiple objects on new lines\n- A full JSON array`}
+          className="min-h-[320px] bg-black border-2 border-zinc-700 text-white"
+          value={jsonInput}
+          onChange={(e) => setJsonInput(e.target.value)}
+        />
+
+        <Button
+          className="w-full bg-white text-black hover:bg-zinc-300"
+          size="lg"
+          onClick={submitJSON}
+          disabled={loading}
+        >
+          {loading ? "Submitting..." : "Submit JSON"}
+        </Button>
+      </div>
+
+    </div>
+  </div>
+    </>
+);
+
 }

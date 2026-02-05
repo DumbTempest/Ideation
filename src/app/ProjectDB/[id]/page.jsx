@@ -68,9 +68,15 @@ export default function ProjectPage() {
 
   if (loading) {
     return (
-      <div className="text-center mt-10 text-gray-400">
-        Loading project...
-      </div>
+      <main className="min-h-screen bg-black px-6 pt-14 pb-10">
+        <Navbar />
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-400 text-sm">
+            Loading project...
+          </p>
+        </div>
+      </main>
     );
   }
 
@@ -103,10 +109,15 @@ export default function ProjectPage() {
         <div className="mt-6 flex justify-between w-full">
           {project.domain?.length > 0 && (
             <section>
-              <h2 className="text-lg font-semibold mb-2 font-tektur">Domain</h2>
+              <h2 className="text-lg font-semibold mb-2 font-tektur">
+                Domain
+              </h2>
               <div className="flex flex-wrap gap-2">
                 {project.domain.map(d => (
-                  <span key={d} className="px-2 py-1 bg-zinc-800 rounded text-sm">
+                  <span
+                    key={d}
+                    className="px-2 py-1 bg-zinc-800 rounded text-sm"
+                  >
                     {d}
                   </span>
                 ))}
@@ -116,10 +127,15 @@ export default function ProjectPage() {
 
           {project.techStack?.length > 0 && (
             <section className="text-right">
-              <h2 className="text-lg font-semibold mb-2 font-tektur">Tech Stack</h2>
+              <h2 className="text-lg font-semibold mb-2 font-tektur">
+                Tech Stack
+              </h2>
               <div className="flex flex-wrap gap-2 justify-end">
                 {project.techStack.map(tech => (
-                  <span key={tech} className="px-2 py-1 bg-zinc-800 rounded text-sm">
+                  <span
+                    key={tech}
+                    className="px-2 py-1 bg-zinc-800 rounded text-sm"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -130,7 +146,9 @@ export default function ProjectPage() {
 
         {project.difficulty && (
           <section className="mt-6">
-            <h2 className="text-lg font-semibold mb-2 font-tektur">Difficulty</h2>
+            <h2 className="text-lg font-semibold mb-2 font-tektur">
+              Difficulty
+            </h2>
             <p className="text-zinc-400 capitalize">
               Level:{' '}
               {typeof project.difficulty === 'string'
@@ -142,7 +160,9 @@ export default function ProjectPage() {
 
         {project.effort && (
           <section className="mt-6">
-            <h2 className="text-lg font-semibold mb-2 font-tektur">Effort</h2>
+            <h2 className="text-lg font-semibold mb-2 font-tektur">
+              Effort
+            </h2>
             <p className="text-zinc-400 capitalize">
               Level: {project.effort.level}
             </p>
@@ -154,7 +174,9 @@ export default function ProjectPage() {
 
         {project.outcomes?.length > 0 && (
           <section className="mt-6">
-            <h2 className="text-lg font-semibold mb-2 font-tektur">Outcomes</h2>
+            <h2 className="text-lg font-semibold mb-2 font-tektur">
+              Outcomes
+            </h2>
             <ul className="list-disc list-inside text-zinc-400">
               {project.outcomes.map(o => (
                 <li key={o}>{o}</li>
