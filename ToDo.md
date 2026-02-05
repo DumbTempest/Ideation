@@ -7,9 +7,12 @@
 - [ ] MainPage – Upper part
 - [ ] MainPage – Middle part
 - [ ] MainPage – Lower part
+- [ ] DB Cards
+- [ ] Contribute Page complete overhaul
 
 # BackEnd
 
 - [ ] API structure cleanup
 - [X] Database schema fixes
+- [ ] Hookup source page to db
 

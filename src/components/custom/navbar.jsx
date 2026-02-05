@@ -35,11 +35,11 @@ export default function Navbar({ hamburgercolor }) {
         initial={{ width: 0, opacity: 0 }}
         animate={
           isOpen
-            ? { width: "38vw", opacity: 0.7, x: -40, y: 15 }
+            ? { width: "38vw", opacity: 1, x: -40, y: 15 }
             : { width: 0, opacity: 0, x: 0, y: 15 }
         }
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
-        className="fixed top-2 right-14 h-10 bg-transparent text-white rounded-full border border-purple-400 flex items-center px-6 gap-8 z-40"
+        className="fixed top-2 right-14 h-10 bg-black text-white rounded-full border border-purple-400 flex items-center px-6 gap-8 z-600"
       >
         {isOpen && (
           <>

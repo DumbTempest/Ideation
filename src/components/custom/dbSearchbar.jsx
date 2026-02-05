@@ -17,7 +17,7 @@ export default function DbSearchbar({ typedText = "", onSearch }) {
     <div className="relative w-full max-w-md mx-auto">
       <Input
         type="text"
-        className="w-full pr-10 rounded-lg border border-gray-300 px-4 py-2 placeholder-transparent focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-white"
+        className="w-full pr-10 border-4 border-purple-500 text-white font-tektur"
         value={value}
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search..."
@@ -25,7 +25,7 @@ export default function DbSearchbar({ typedText = "", onSearch }) {
 
       {value && (
         <button
-          className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+          className="absolute inset-y-0 right-0 flex items-center pr-3 text-white hover:text-gray-600"
           onClick={() => setValue("")}
         >
           <X size={18} />
