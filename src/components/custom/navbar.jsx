@@ -51,7 +51,7 @@ export default function Navbar({ hamburgercolor }) {
               <span className="font-tektur  cursor-pointer font-medium">Services</span>
             </Link>
 
-            <Link href="/Contri">
+            <Link href="/">
               <span className="font-tektur cursor-pointer font-medium">Contribute</span>
             </Link>
 
