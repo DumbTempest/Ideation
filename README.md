@@ -1,4 +1,4 @@
-# Ideation
+# Ideation (More Projects to be added)
 
 A web application that helps developers discover and select their next project through our database and intelligent recommendation system.
 
