@@ -1,5 +1,6 @@
 # Ideation (More Projects to be added) 
-==Under Construction==
+![Status](https://img.shields.io/badge/status-under%20construction-yellow)
+
 
 A web application that helps developers discover and select their next project through our database and intelligent recommendation system.
 
