@@ -1,5 +1,5 @@
 # Ideation (More Projects to be added) 
-<span style="color: yellow;">Under Construction</span>
+==Under Construction==
 
 A web application that helps developers discover and select their next project through our database and intelligent recommendation system.
 
